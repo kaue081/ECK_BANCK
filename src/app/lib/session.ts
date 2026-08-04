@@ -14,3 +14,6 @@ export default function criarSessao(conta:string, senha:string){
     }
     localStorage.setItem(CHAVE_SESSAO, JSON.stringify(sessao));
 }
+ export function removerSessao(){
+    localStorage.removeItem(CHAVE_SESSAO);
+ }
