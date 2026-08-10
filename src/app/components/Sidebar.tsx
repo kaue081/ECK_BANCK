@@ -19,26 +19,13 @@ type MenuItemProps = {
   onClick?: () => void;
 };
 
-function MenuItem({
-  icon,
-  text,
-  open,
-  onClick,
-}: MenuItemProps) {
+function MenuItem({ icon, text, open, onClick }: MenuItemProps) {
   return (
     <button
       onClick={onClick}
-      className="
-        w-full
-        flex
-        items-center
-        gap-4
-        hover:bg-slate-800
-        p-4
-      "
+      className="w-full flex items-center gap-4 hover:bg-slate-800 p-4 transition-colors text-left"
     >
       {icon}
-
       {open && <span>{text}</span>}
     </button>
   );
@@ -58,39 +45,31 @@ export default function Sidebar() {
 
   return (
     <aside
-      className={`
-        bg-slate-900
-        text-white
-        h-screen
-        duration-300
-        transition-all
-        ${open ? "w-64" : "w-20"}
-      `}
+      className={`bg-slate-900 text-white min-h-screen duration-300 transition-all ${
+        open ? "w-64" : "w-20"
+      }`}
     >
       <div className="flex justify-between items-center p-5">
-        {open && (
-          <h1 className="font-bold text-xl">
-            MyBank
-          </h1>
-        )}
+        {open && <h1 className="font-bold text-xl">MyBank</h1>}
 
         <button
           onClick={() => setOpen(!open)}
-          className="hover:bg-slate-700 rounded-lg p-2"
+          className="hover:bg-slate-700 rounded-lg p-2 transition-colors"
+          aria-label="Toggle menu"
         >
           <Menu size={22} />
         </button>
       </div>
 
       <nav className="mt-10">
-        <MenuItem icon={<Home />} text="Dashboard" open={open} />
-        <MenuItem icon={<Wallet />} text="Contas" open={open} />
-        <MenuItem icon={<CreditCard />} text="Cartões" open={open} />
-        <MenuItem icon={<BarChart3 />} text="Investimentos" open={open} />
-        <MenuItem icon={<Settings />} text="Configurações" open={open} />
+        <MenuItem icon={<Home size={20} />} text="Dashboard" open={open} />
+        <MenuItem icon={<Wallet size={20} />} text="Contas" open={open} />
+        <MenuItem icon={<CreditCard size={20} />} text="Cartões" open={open} />
+        <MenuItem icon={<BarChart3 size={20} />} text="Investimentos" open={open} />
+        <MenuItem icon={<Settings size={20} />} text="Configurações" open={open} />
 
         <MenuItem
-          icon={<LogOut />}
+          icon={<LogOut size={20} />}
           text="Sair"
           open={open}
           onClick={logout}
@@ -98,4 +77,4 @@ export default function Sidebar() {
       </nav>
     </aside>
   );
-}
+}
