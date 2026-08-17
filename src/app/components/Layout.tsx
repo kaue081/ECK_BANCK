@@ -9,22 +9,16 @@ export default function Layout({
 
     return(
 
-        <div className="flex">
-
-            <Sidebar/>
-
-            <main className="flex-1 bg-slate-100 min-h-screen">
-
-                <Header/>
-
-                <div className="p-8">
-
-                    {children}
-
-                </div>
-
-            </main>
-
+        <div className="flex h-screen p-4 md:p-6 lg:p-8">
+            <div className="flex flex-1 rounded-[2.5rem] overflow-hidden shadow-[0_16px_64px_0_rgba(31,38,135,0.1)] border border-white/50 bg-white/40 backdrop-blur-3xl">
+                <Sidebar/>
+                <main className="flex-1 flex flex-col h-full overflow-hidden relative">
+                    <Header/>
+                    <div className="p-8 overflow-y-auto h-full">
+                        {children}
+                    </div>
+                </main>
+            </div>
         </div>
 
     )

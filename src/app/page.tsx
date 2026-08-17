@@ -3,7 +3,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 export default function LoginBanco() {
   const CONTA_FIXA = "2009";
@@ -18,36 +18,24 @@ export default function LoginBanco() {
     const senhaDigitada = String(formData.get("senha") ?? "");
 
     if (!conta || !senhaDigitada) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "existem dados vazios",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      toast.error("existem dados vazios");
       return;
     }
 
     if (CONTA_FIXA !== conta || SENHA_FIXA !== senhaDigitada) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "existem dados invalidos",
-        showConfirmButton: false,
-        timer: 1500
-      });
+      toast.error("existem dados invalidos");
       return;
     }
 
-    router.push("/dashboard");
+    router.push("/conta");
   }
 
   return (
-    <main className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+    <main className="min-h-screen flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2rem] shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] p-8">
         <form onSubmit={Autenticar} className="space-y-6">
           <h2 className="text-3xl font-bold text-center text-slate-800">
-            Banco Charles
+            ECK-BANK
           </h2>
 
           {/* Conta */}
@@ -60,7 +48,7 @@ export default function LoginBanco() {
               name="conta"
               type="text"
               placeholder="Digite sua conta"
-              className="w-full border border-slate-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500 text-slate-800"
+              className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/80 transition-all text-slate-800 shadow-sm"
             />
           </div>
 
@@ -75,7 +63,7 @@ export default function LoginBanco() {
                 name="senha"
                 type={senha ? "text" : "password"}
                 placeholder="Digite sua senha"
-                className="w-full border border-slate-300 rounded-lg px-4 py-3 pr-12 outline-none focus:ring-2 focus:ring-blue-500 text-slate-800"
+                className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 pr-12 outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/80 transition-all text-slate-800 shadow-sm"
               />
               <button
                 type="button"
@@ -92,14 +80,14 @@ export default function LoginBanco() {
           <div className="flex gap-4">
             <button
               type="reset"
-              className="w-1/2 py-3 rounded-lg bg-slate-200 hover:bg-slate-300 font-medium text-slate-700 transition-colors"
+              className="w-1/2 py-3 rounded-xl bg-white/40 hover:bg-white/60 backdrop-blur-md border border-white/50 font-medium text-slate-700 transition-all shadow-sm"
             >
               Cancelar
             </button>
 
             <button
               type="submit"
-              className="w-1/2 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+              className="w-1/2 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold transition-all shadow-md shadow-blue-500/20"
             >
               Entrar
             </button>
