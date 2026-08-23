@@ -1,7 +1,7 @@
 interface Sessao{
-    conta: String;
-    senha: String;
-    autenticadoEm: String;
+    conta: string;
+    senha: string;
+    autenticadoEm: string;
 }
 
 const CHAVE_SESSAO = "minha_sessao_chave";

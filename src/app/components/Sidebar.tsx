@@ -3,7 +3,6 @@
 import {
   Menu,
   User,
-  Wallet,
   CreditCard,
   ArrowRightLeft,
   Settings,

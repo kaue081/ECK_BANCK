@@ -14,7 +14,7 @@ export default function Layout({
                 <Sidebar/>
                 <main className="flex-1 flex flex-col h-full overflow-hidden relative">
                     <Header/>
-                    <div className="p-8 overflow-y-auto h-full">
+                    <div className="p-4 sm:p-6 md:p-8 overflow-y-auto h-full">
                         {children}
                     </div>
                 </main>

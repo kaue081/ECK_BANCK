@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { AppProvider } from "./context/AppContext";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -30,8 +31,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-gradient-to-br from-violet-100 via-fuchsia-100 to-cyan-100 bg-fixed text-slate-800" suppressHydrationWarning>
-        {children}
-        <ToastContainer />
+        <AppProvider>
+          {children}
+          <ToastContainer />
+        </AppProvider>
       </body>
     </html>
   );
