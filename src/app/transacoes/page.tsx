@@ -44,12 +44,6 @@ export default function Transacoes() {
     return (
         <Layout>
             <div className="max-w-6xl mx-auto pb-10">
-                {/* Header da Página */}
-                <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-slate-800">Transações</h1>
-                    <p className="text-slate-500 mt-2">Gerencie suas transferências e acompanhe suas movimentações</p>
-                </div>
-
                 {/* Ações Rápidas */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
                     <button onClick={() => iniciarSimulacao('Enviar PIX')} className="bg-white/60 backdrop-blur-md border border-white/80 rounded-2xl p-5 hover:bg-white/80 transition-all shadow-[0_4px_20px_0_rgba(31,38,135,0.05)] hover:shadow-[0_8px_30px_0_rgba(31,38,135,0.1)] hover:-translate-y-1 text-left flex flex-col group">

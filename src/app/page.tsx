@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 import { toast } from "react-toastify";
+import criarSessao from "./lib/session";
 
 export default function LoginBanco() {
   const CONTA_FIXA = "2009";
@@ -27,12 +28,14 @@ export default function LoginBanco() {
       return;
     }
 
+    criarSessao(conta);
+    
     router.push("/conta");
   }
 
   return (
     <main className="min-h-screen flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-white/40 backdrop-blur-2xl border border-white/60 rounded-[2rem] shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] p-8">
+      <div className="w-full max-w-md bg-white/40 backdrop-blur-2xl border border-white/60 rounded-4xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] p-8">
         <form onSubmit={Autenticar} className="space-y-6">
           <h2 className="text-3xl font-bold text-center text-slate-800">
             ECK-BANK
@@ -48,7 +51,7 @@ export default function LoginBanco() {
               name="conta"
               type="text"
               placeholder="Digite sua conta"
-              className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/80 transition-all text-slate-800 shadow-sm"
+              className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-blue-400 transition-all text-slate-800 shadow-sm"
             />
           </div>
 
@@ -63,7 +66,7 @@ export default function LoginBanco() {
                 name="senha"
                 type={senha ? "text" : "password"}
                 placeholder="Digite sua senha"
-                className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 pr-12 outline-none focus:ring-2 focus:ring-blue-400 focus:bg-white/80 transition-all text-slate-800 shadow-sm"
+                className="w-full bg-white/50 backdrop-blur-sm border border-white/60 rounded-xl px-4 py-3 pr-12 outline-none focus:ring-2 focus:ring-blue-400 transition-all text-slate-800 shadow-sm"
               />
               <button
                 type="button"
@@ -87,7 +90,7 @@ export default function LoginBanco() {
 
             <button
               type="submit"
-              className="w-1/2 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold transition-all shadow-md shadow-blue-500/20"
+              className="w-1/2 py-3 rounded-xl bg-linear-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold transition-all shadow-md shadow-blue-500/20"
             >
               Entrar
             </button>

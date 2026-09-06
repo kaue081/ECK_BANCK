@@ -7,6 +7,8 @@ type AppContextType = {
     setLimitePix: (val: number | ((prev: number) => number)) => void;
     saldo: number;
     setSaldo: (val: number | ((prev: number) => number)) => void;
+    sidebarOpen: boolean;
+    setSidebarOpen: (val: boolean | ((prev: boolean) => boolean)) => void;
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -15,6 +17,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     // Definimos o limite inicial como 5000, para ficar coerente com a transação
     const [limitePix, setLimitePixState] = useState(5000);
     const [saldo, setSaldoState] = useState(12500.50);
+    const [sidebarOpen, setSidebarOpenState] = useState(true);
 
     // Tenta carregar do localStorage quando o componente for montado no lado do cliente
     useEffect(() => {
@@ -25,6 +28,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         const savedSaldo = localStorage.getItem('saldo');
         if (savedSaldo) {
             setSaldoState(Number(savedSaldo));
+        }
+        const savedSidebar = localStorage.getItem('sidebarOpen');
+        if (savedSidebar !== null) {
+            setSidebarOpenState(savedSidebar === 'true');
         }
     }, []);
 
@@ -45,8 +52,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         });
     };
 
+    const setSidebarOpen = (val: boolean | ((prev: boolean) => boolean)) => {
+        setSidebarOpenState(prev => {
+            const nextVal = typeof val === 'function' ? val(prev) : val;
+            localStorage.setItem('sidebarOpen', nextVal.toString());
+            return nextVal;
+        });
+    };
+
     return (
-        <AppContext.Provider value={{ limitePix, setLimitePix, saldo, setSaldo }}>
+        <AppContext.Provider value={{ limitePix, setLimitePix, saldo, setSaldo, sidebarOpen, setSidebarOpen }}>
             {children}
         </AppContext.Provider>
     );
